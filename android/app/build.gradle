@@ -25,6 +25,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.google.android.gms:play-services-location:15.0.1'
+    }
+}
+
 android {
     compileSdkVersion 28
 
@@ -38,6 +45,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        multiDexEnabled true
         applicationId "com.example.my_weather_app"
         minSdkVersion 16
         targetSdkVersion 28
@@ -60,8 +68,11 @@ flutter {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-base:15.0.2'
+    implementation 'com.google.android.gms:play-services-vision:15.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+
